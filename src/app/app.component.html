@@ -1,16 +1,6 @@
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="appService.showAppLoader$ | async"
+></mat-progress-bar>
 
-<div class="filters">
-
-  <div class="filters__search">
-    <mat-form-field appearance="fill">
-      <input type="text" matInput>
-    </mat-form-field>
-  </div>
-  <div class="filters__wrap">
-    <!-- todo other filters -->
-  </div>
-</div>
-
-<div class="results">
-  <!-- todo output results list -->
-</div>
+<router-outlet></router-outlet>

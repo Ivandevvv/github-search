@@ -1,0 +1,21 @@
+@import 'modules/mixin';
+
+:host {
+  @include flex-page-center;
+  padding: 100px 0;
+}
+
+h2 {
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+
+.field {
+  display: flex;
+  &+ .field { margin-top: 12px; }
+}
+
+.name {
+  width: 300px;
+  margin-right: 16px;
+}

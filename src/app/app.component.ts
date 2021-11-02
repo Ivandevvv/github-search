@@ -1,26 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { AppService } from './shared/services/app.service';
 
-@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  searchControl = new FormControl();
+export class AppComponent {
 
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.searchControl.valueChanges.pipe(
-      untilDestroyed(this),
-      debounceTime(300)
-    ).subscribe({
-      next: value => {}
-    });
-  }
+  constructor(
+    public appService: AppService
+  ) {}
 }

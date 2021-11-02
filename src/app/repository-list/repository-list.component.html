@@ -1,0 +1,46 @@
+
+<div class="gl-container">
+  <div class="filters">
+
+    <div class="filters__search">
+      <mat-form-field color="primary">
+        <mat-label>Введите название репозитория...</mat-label>
+        <input type="text" matInput [formControl]="searchControl" placeholder="Placeholder">
+      </mat-form-field>
+    </div>
+    <div class="filters__wrap" [class.disabled]="!searchControlTouched
+         || (appService.showAppLoader$ | async) === true" [formGroup]="filters">
+      
+      <mat-form-field>
+        <mat-label>Видимость</mat-label>
+        <mat-select [formControlName]="prop.visibility">
+          <mat-option [value]="VisibilityEnum.public">Публичный</mat-option>
+          <mat-option [value]="VisibilityEnum.private">Приватный</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox [formControlName]="prop.haveHovePage">
+        Есть домашняя страница
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="results__repository" *ngFor="let item of dataOutput">
+      <p>
+        Название:
+        <a href="javascript:void(0)" (click)="goToRepository(item)">{{ item.full_name }}</a>
+      </p>
+      <p *ngIf="item.homepage">
+        Домашняя страница:
+        <a [href]="item.homepage" target="_blank">{{ item.homepage }}</a>
+      </p>
+      <p>Дата публикации: {{ item.pushed_at | date:'dd.MM.YYYY' }}</p>
+    </div>
+
+    <p *ngIf="searchControlTouched
+        && (appService.showAppLoader$ | async) === false
+        && !dataOutput.length">
+      По вашему запросу ничего не найдено
+    </p>
+  </div>
+</div>

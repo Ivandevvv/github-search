@@ -1,0 +1,6 @@
+
+@mixin flex-page-center() {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}

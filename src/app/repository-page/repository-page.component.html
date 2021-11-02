@@ -1,0 +1,37 @@
+
+<ng-container *ngIf="repositoryPageService.repository$ | async as repository">
+
+  <div class="gl-container">
+    <h2 routerLink="../"><< Назад</h2>
+    <div class="field">
+      <p class="name">Название:</p>
+      <p class="value">{{ repository.full_name }}</p>
+    </div>
+    <div class="field">
+      <p class="name">Сайт:</p>
+      <p class="value">{{ repository.homepage }}</p>
+    </div>
+    <div class="field">
+      <p class="name">Дата публикации:</p>
+      <p class="value">{{ repository.pushed_at | date:'dd.MM.YYYY' }}</p>
+    </div>
+    <div class="field">
+      <p class="name">Видимость:</p>
+      <p class="value">{{ repository.visibility | visibility }}</p>
+    </div>
+    <div class="field">
+      <p class="name">Ссылка на git-репозиторий:</p>
+      <p class="value">
+        <a [href]="repository.html_url" target="_blank">{{ repository.html_url }}</a>
+      </p>
+    </div>
+    <div class="field">
+      <p class="name">Кол-во форков:</p>
+      <p class="value">{{ repository.forks_count }}</p>
+    </div>
+    <div class="field">
+      <p class="name">Главная ветка:</p>
+      <p class="value">{{ repository.default_branch }}</p>
+    </div>
+  </div>
+</ng-container>
